@@ -3,6 +3,8 @@
 
 I have pushed the half finished code as I had to give up due to it seemingly not being possible to create unique indexes on collections. I'll return to this if I can later
 
+The master branch just has the shard key helper, fuller-version contains where I got to
+
 # TODO
 
 * A lot of tidying/code restructing
