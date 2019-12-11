@@ -1,0 +1,28 @@
+{
+  "name": "mongoose-cosmosdb-partions",
+  "version": "1.0.0",
+  "description": "Mongoose plugin to help with partition keys in Azure Cosmos DBs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samgladstone/mongoose-cosmosdb-partions.git"
+  },
+  "keywords": [
+    "mongoose",
+    "cosmosdb",
+    "cosmos db",
+    "partitions"
+  ],
+  "author": "Sam Gladstone",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samgladstone/mongoose-cosmosdb-partions/issues"
+  },
+  "homepage": "https://github.com/samgladstone/mongoose-cosmosdb-partions#readme",
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
+}
