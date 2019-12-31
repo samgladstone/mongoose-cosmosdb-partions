@@ -1,6 +1,6 @@
 {
   "name": "mongoose-cosmosdb-partions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Mongoose plugin to help with partition keys in Azure Cosmos DBs",
   "main": "index.js",
   "scripts": {

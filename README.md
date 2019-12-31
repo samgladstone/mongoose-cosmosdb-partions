@@ -111,7 +111,9 @@ The below are valid options for a segement:
 * `Function` - the return value of the function will be used.
 * `Array: [opt1, opt2, opt3] ` - where `opt1` is equal to:
     * `'property' || 'prop' || 'p'` - the document property accessed using `opt2` . `opt3` can be used to specify the first x characters if the property is a string.
-     * `'hashProperty' || 'hash' || 'h'` - the hash of the document property accessed using `opt2`. The first `opt3` characters will be used (or `6` characters if `opt3` is not defined).
+     * `'hashProperty' || 'hashProp' || 'hp'` - the hash of the document property accessed using `opt2`. The first `opt3` characters will be used (or `6` characters if `opt3` is not defined).
+     * `'hashFunction' || 'hashFn' || 'hf'` - the hash return value of the function passed in as `opt2`. The first `opt3` characters will be used (or `6` characters if `opt3` is not defined).
+        * In the function, `this` will refer to the document instance
      * `'random' || 'rand' || 'r'` - a random string will be used of length `opt2` (or `6` characters if `opt2` is not defined).
 * All other values will result in an empty string
 
