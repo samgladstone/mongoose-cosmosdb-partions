@@ -29,7 +29,7 @@ function cosmosDbPlugin(schema) {
                 generators.processShardKeyOptions(shardKeyOptions);
 
             if (shardKeySchemaType)
-                shardKeySchemaType.defaultValue = generatingFunction;
+                shardKeySchemaType.default(generatingFunction);
             else {
                 const newShardKey = {}
                 props[shardKey] = {
