@@ -21,6 +21,9 @@ function processShardKeyOptions(shardKeyOptions) {
         else if (hashProperty.test(shardKeyOptions))
             segments.push(hashProperty(shardKeyOptions[1], shardKeyOptions[2]));
 
+        else if (hashFunction.test(shardKeyOptions))
+            segments.push(hashFunction(shardKeyOptions[1], shardKeyOptions[2]));
+
         else
             segments = shardKeyOptions.reduce(function (val, option) {
                 val.push(determineGenerator(option));
@@ -62,6 +65,10 @@ function determineGenerator(option) {
 
         if (hashProperty.test(option))
             return hashProperty(option[1], option[2]);
+
+
+        if (hashFunction.test(option))
+            return hashFunction(option[1], option[2]);
     }
 
     return '';
@@ -112,15 +119,46 @@ function hashProperty(propertyName, length) {
 }
 
 /**
- * Test if this is a random
+ * Test if this is a hash property
  * @param {Array} shardKeyOption
  * @returns {Boolean}
  */
 hashProperty.test = (shardKeyOption) =>
     shardKeyOption instanceof Array && (
         shardKeyOption[0] === 'hashProperty' ||
-        shardKeyOption[0] === 'hash' ||
-        shardKeyOption[0] === 'h');
+        shardKeyOption[0] === 'hashProp' ||
+        shardKeyOption[0] === 'hp');
+
+/**
+ * Hashes the result of a function
+ * @param {Function} valueGenerator - A function that returns the value to hash
+ * @param {Number} length - The number of random characters to generate. Default: 6
+ * @returns {Function} a function that returns the specified characters of the property hash
+ */
+function hashFunction(valueGenerator, length) {
+    length = ensureDefaultLength(length);
+
+    if (typeof valueGenerator !== 'function') throw new Error('Hash function requires a function as an input')
+
+    return function () {
+        return crypto
+            .createHash('sha1')
+            .update('' + valueGenerator.call(this))
+            .digest('hex')
+            .substr(0, length);
+    }
+}
+
+/**
+ * Test if this is a hash function
+ * @param {Array} shardKeyOption
+ * @returns {Boolean}
+ */
+hashFunction.test = (shardKeyOption) =>
+    shardKeyOption instanceof Array && (
+        shardKeyOption[0] === 'hashFunction' ||
+        shardKeyOption[0] === 'hashFn' ||
+        shardKeyOption[0] === 'hf');
 
 /**
  * Hashes a property
@@ -138,7 +176,7 @@ function property(propertyName, length) {
 }
 
 /**
- * Test if this is a random
+ * Test if this is a property
  * @param {Array} shardKeyOption
  * @returns {Boolean}
  */
